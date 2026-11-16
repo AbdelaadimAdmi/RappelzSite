@@ -98,7 +98,7 @@ function App() {
       <section className="world-image" id="world-image" aria-label="An ancient fantasy realm"><div className="image-overlay"/>Test<div className="image-note"><span>Placeholder</span><i/> Placeholder</div></section>
 {/* Fix this shit */}
       <section className="heroes section" id="heroes">
-        <div className="section-label"><span>02</span><i/> Placeholder</div>
+        <div className="section-label"><span>02</span><i/> Testing testing testing</div>
         <div className="heroes-heading"><div><p className="eyebrow muted">Placeholder</p><h2>Placeholder<br/><em>Placeholder</em></h2></div><p>Placeholder<br/>Placeholder</p></div>
         <div className="class-grid">
           {[
