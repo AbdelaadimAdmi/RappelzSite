@@ -221,15 +221,25 @@ main {
    ========================================================================== */
 .hero {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   min-height: min(850px, 100svh);
   height: 780px;
   max-height: 960px;
   display: flex;
   align-items: center;
+  background: #111;
+}
+
+.hero-art {
+  position: absolute;
+  z-index: -1;
+  inset: -5%;
   background-image: var(--hero-image);
   background-position: center 43%;
   background-size: cover;
-  transition: background-image 0.3s ease;
+  animation: hero-art-zoom 10s linear infinite alternate, hero-art-fade 0.8s ease both;
+  will-change: transform;
 }
 
 .hero::after {
@@ -242,6 +252,7 @@ main {
 
 .hero-shade {
   position: absolute;
+  z-index: 0;
   inset: 0;
   background:
     linear-gradient(90deg, rgba(10, 10, 10, 0.84) 0%, rgba(13, 12, 12, 0.54) 40%, rgba(10, 10, 10, 0.12) 100%),
@@ -656,6 +667,16 @@ footer > div a {
   }
 }
 
+@keyframes hero-art-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+@keyframes hero-art-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (max-width: 900px) {
   .topbar {
     height: 75px;
@@ -764,14 +785,6 @@ footer > div a {
     display: block;
     margin-left: 16px;
   }
-
-  .hero {
-    min-height: 690px;
-    height: 92svh;
-    max-height: 820px;
-    background-position: 59% center;
-  }
-
   .hero-shade {
     background:
       linear-gradient(90deg, #0b0b0bd9, #0b0b0b75 75%, #0b0b0b42),
@@ -898,11 +911,12 @@ footer > div a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *:not(.hero-art),
+  *:not(.hero-art)::before,
+  *:not(.hero-art)::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  
 }

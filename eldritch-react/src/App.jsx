@@ -9,10 +9,10 @@ const chapters = [
 ]
 
 const navItems = [
-  { label: 'Home', links: [['Overview', '#top'], ['Enter the realm', '#world']] },
-  { label: 'The world', links: [['Placeholder', '#world'], ['Placeholder', '#world-image']] },
-  { label: 'Champions', links: [['Placeholder', '#heroes'], ['Placeholder', '#heroes'], ['Placeholder', '#heroes'], ['Placeholder', '#heroes']] },
-  { label: 'Chronicles', links: [['Placeholder', '#news'], ['Placeholder', '#news']] },
+  { label: 'Home', links: [['Overview', '#top'], ['Watch the Trailer', '#world']] },
+  { label: 'News', links: [['Patch Notes', '#world'], ['Placeholder', '#world-image']] },
+  { label: 'Rankings', links: [['Players', '#heroes'], ['Guilds', '#heroes'], ['The Spire', '#heroes'], ['Death Logs', '#heroes']] },
+  { label: 'About', links: [['Placeholder', '#news'], ['Placeholder', '#news']] },
 ]
 
 const Navbar = () => {
@@ -68,15 +68,25 @@ const Navbar = () => {
 function App() {
   const [active, setActive] = useState(0)
   const chapter = chapters[active]
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActive((current) => (current + 1) % chapters.length)
+    }, 15000)
+
+    return () => window.clearInterval(intervalId)
+  }, [active])
+
   const move = (direction) => setActive((active + direction + chapters.length) % chapters.length)
 
   return (
     <main>
       <Navbar />
 
-      <section className="hero" id="top" style={{ '--hero-image': `url("${chapter.image}")` }}>
+      <section className="hero" id="top">
+        <div className="hero-art" key={active} style={{ '--hero-image': `url("${chapter.image}")` }} />
         <div className="hero-grain"/><div className="hero-shade"/>
-        <div className="hero-copy" key={active}>
+        <div className="hero-copy">
           <p className="eyebrow"><span/> {chapter.eyebrow} <span/></p>
           <h1>{chapter.title.split('\n').map((line) => <span key={line}>{line}</span>)}</h1>
           <p className="hero-quote">{chapter.quote}</p>
@@ -89,11 +99,9 @@ function App() {
 
       <section className="intro section" id="world">
         <div className="section-label"><span>01</span><i/> Placeholder</div>
-        <div className="intro-content"><div><p className="eyebrow muted">Placeholder</p><h2>Placeholder<br/><em>Placeholder</em></h2></div><div className="intro-text"><p>Placeholder</p><a className="text-link" href="#heroes">Placeholder <ArrowRight size={14}/></a></div></div>
+        <div className="intro-content"><div><p className="eyebrow muted">intro</p><h2>Placeholder<br/><em>Placeholder</em></h2></div><div className="intro-text"><p>Placeholder</p><a className="text-link" href="#heroes">Placeholder <ArrowRight size={14}/></a></div></div>
         <div className="ornament">✳</div>
       </section>
-
-      
 
       <section className="world-image" id="world-image" aria-label="An ancient fantasy realm"><div className="image-overlay"/>Test<div className="image-note"><span>Placeholder</span><i/> Placeholder</div></section>
 {/* Fix this shit */}
@@ -110,7 +118,6 @@ function App() {
       </section>
 
       <section className="story-band" id="news"><div className="story-content"><p className="eyebrow">Placeholder</p><h2>Placeholder<br/>Placeholder <em>Placeholder.</em></h2><a href="#top" className="gold-button"><Play size={13} fill="currentColor"/><span>TRAILER</span></a></div></section>
-      
       <footer><a className="brand" href="#top"><span className="brand-mark">E</span><span>Placeholder<small>Placeholder</small></span></a><p>© 2026 Copyright.</p><div><a href="#world">INSTAGRAM</a><a href="#world">DISCORD</a><a href="#world">TWITCH</a></div></footer>
     </main>
   )
