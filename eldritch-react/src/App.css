@@ -1,0 +1,908 @@
+/* ==========================================================================
+   1. Base & Global Layout
+   ========================================================================== */
+main {
+  overflow: hidden;
+  background: #10100f;
+  color: #eee8dd;
+}
+
+.eyebrow {
+  font: 600 9px/1.6 'Montserrat', sans-serif;
+  letter-spacing: 3.4px;
+  color: #d8b878;
+}
+
+.muted {
+  color: #a38e6a;
+}
+
+/* ==========================================================================
+   2. Buttons & Interactive Links
+   ========================================================================== */
+.gold-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 16px 19px;
+  background: #b18c55;
+  color: #171512;
+  text-decoration: none;
+  font: 700 9px/1 'Montserrat', sans-serif;
+  letter-spacing: 1.5px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.gold-button:hover {
+  background: #d2b477;
+  transform: translateY(-2px);
+}
+
+.outline-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 17px;
+  border: 1px solid #b7955e;
+  color: #e8d3ac;
+  text-decoration: none;
+  font: 600 9px/1 'Montserrat', sans-serif;
+  letter-spacing: 1.4px;
+}
+
+.text-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 25px;
+  color: #d0af75;
+  text-decoration: none;
+  font: 600 9px 'Montserrat', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   3. Topbar & Navigation
+   ========================================================================== */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 5;
+  height: 88px;
+  padding: 0 6.2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff20;
+  color: #f5f0e9;
+  background: rgba(13, 13, 12, 0.34);
+  backdrop-filter: blur(8px);
+  transition: transform 0.28s ease, background 0.28s ease;
+}
+
+.topbar-hidden {
+  transform: translateY(-100%);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #f5f0e9;
+  font: 600 15px/1 'Cinzel', Georgia, serif;
+  letter-spacing: 2px;
+}
+
+.brand-mark {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #bd985b;
+  color: #d5b479;
+  font: italic 25px/1 Georgia, serif;
+  transform: rotate(45deg);
+}
+
+.brand-mark + span {
+  display: grid;
+  gap: 5px;
+}
+
+.brand small {
+  font: 8px/1 'Montserrat', sans-serif;
+  letter-spacing: 2.6px;
+  color: #c0b8a9;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-trigger,
+.shop-link {
+  color: #d7d0c4;
+  text-decoration: none;
+  font: 500 10px/1 'Montserrat', sans-serif;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.nav-trigger:hover,
+.nav-trigger.current,
+.shop-link:hover {
+  color: #d8b878;
+}
+
+.nav-trigger svg {
+  transition: transform 0.2s;
+}
+
+.nav-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: -18px;
+  min-width: 190px;
+  padding: 10px 0;
+  background: rgba(17, 17, 15, 0.97);
+  border: 1px solid #ffffff24;
+  box-shadow: 0 12px 30px #0006;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+}
+
+.dropdown-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown a {
+  display: block;
+  padding: 12px 18px;
+  color: #c9c1b3;
+  text-decoration: none;
+  font: 500 9px/1.4 'Montserrat', sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dropdown a:hover {
+  color: #dfbf81;
+  background: #ffffff0a;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.shop-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.menu-button {
+  display: none;
+  background: none;
+  border: 0;
+  color: #eee;
+}
+
+/* ==========================================================================
+   4. Hero Section
+   ========================================================================== */
+.hero {
+  position: relative;
+  min-height: min(850px, 100svh);
+  height: 780px;
+  max-height: 960px;
+  display: flex;
+  align-items: center;
+  background-image: var(--hero-image);
+  background-position: center 43%;
+  background-size: cover;
+  transition: background-image 0.3s ease;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 70% 43%, transparent 0, rgba(7, 7, 7, 0.12) 60%, rgba(7, 7, 7, 0.4) 100%);
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 10, 10, 0.84) 0%, rgba(13, 12, 12, 0.54) 40%, rgba(10, 10, 10, 0.12) 100%),
+    linear-gradient(0deg, #10100f 0%, transparent 22%, rgba(10, 10, 10, 0.15) 75%, rgba(10, 10, 10, 0.48) 100%);
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+  margin-top: 36px;
+  margin-left: 14.2%;
+  animation: rise 0.7s both;
+}
+
+.hero-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 0 23px;
+}
+
+.hero-copy .eyebrow span {
+  width: 30px;
+  height: 1px;
+  background: #b79965;
+}
+
+.hero h1,
+.section h2,
+.story-band h2 {
+  margin: 0;
+  color: #f6f0e6;
+  font: 500 clamp(64px, 8.5vw, 120px)/0.91 'Cinzel', Georgia, serif;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 28px #0008;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.hero-quote {
+  max-width: 360px;
+  margin: 27px 0 30px;
+  color: #dbd4c8;
+  font: italic 15px/1.8 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.2px;
+}
+
+.scroll-cue {
+  position: absolute;
+  left: 6.2%;
+  bottom: 42px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #d2cbbf;
+  text-decoration: none;
+  font: 500 8px 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+}
+
+.scroll-cue svg {
+  color: #c6a366;
+}
+
+.slider-controls {
+  position: absolute;
+  right: 6.2%;
+  bottom: 36px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.slider-controls button {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 1px solid #ffffff65;
+  color: #f1eade;
+  cursor: pointer;
+}
+
+.slide-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #aaa397;
+  font: 10px 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
+
+.slide-count b {
+  color: #e0be82;
+  font-weight: 500;
+}
+
+.slide-count span {
+  width: 26px;
+  height: 1px;
+  background: #a08a66;
+}
+
+.hero-caption {
+  position: absolute;
+  top: 51%;
+  right: 6.2%;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  color: #d3cbbd;
+  font: 8px 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+}
+
+.hero-caption span {
+  color: #d2ae70;
+}
+
+/* ==========================================================================
+   5. General Sections & Intro
+   ========================================================================== */
+.section {
+  position: relative;
+  padding: 120px 14.2%;
+}
+
+.section .eyebrow {
+  margin: 0 0 17px;
+}
+
+.section h2 {
+  font-size: clamp(42px, 5.5vw, 70px);
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.section h2 em,
+.story-band h2 em {
+  font-weight: 400;
+  color: #bd9b63;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #8e887d;
+  font: 600 8px 'Montserrat', sans-serif;
+  letter-spacing: 2.5px;
+}
+
+.section-label span {
+  color: #c5a66c;
+}
+
+.section-label i {
+  width: 38px;
+  height: 1px;
+  background: #61594c;
+}
+
+.intro {
+  padding-top: 110px;
+  padding-bottom: 104px;
+  background: #10100f;
+}
+
+.intro-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 49px;
+}
+
+.intro-text {
+  max-width: 355px;
+  padding-bottom: 5px;
+}
+
+.intro-text p,
+.heroes-heading > p {
+  color: #a8a195;
+  font: 15px/1.85 'Cormorant Garamond', Georgia, serif;
+}
+
+.ornament {
+  position: absolute;
+  top: 49%;
+  right: 8%;
+  color: #524936;
+  font-size: 25px;
+}
+
+/* ==========================================================================
+   6. World Banner
+   ========================================================================== */
+.world-image {
+  position: relative;
+  height: 420px;
+  background: url('https://images8.alphacoders.com/376/thumb-1920-376901.jpg') center 45% / cover;
+  filter: saturate(0.65);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, #10100f 0%, transparent 40%, #10100f66 100%),
+    linear-gradient(90deg, #10100f44, transparent 40%, #10100f66);
+    
+}
+
+.image-note {
+  position: absolute;
+  right: 14%;
+  bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e4d6bc;
+  font: 8px 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+}
+
+.image-note i {
+  width: 25px;
+  height: 1px;
+  background: #bd9b63;
+}
+
+.image-note span {
+  color: #bd9b63;
+}
+
+/* ==========================================================================
+   7. Heroes & Class Grid
+   ========================================================================== */
+.heroes {
+  padding-top: 105px;
+  padding-bottom: 130px;
+}
+
+.heroes-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 47px 0 43px;
+}
+
+.heroes-heading > p {
+  margin: 0 2% 6px 20px;
+}
+
+.heroes-heading h2 {
+  font-size: clamp(38px, 4.7vw, 60px);
+}
+
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.class-card {
+  position: relative;
+  height: 390px;
+  padding: 27px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  color: #f2ede4;
+  text-decoration: none;
+  background-image: linear-gradient(0deg, #0e0e0df2 0%, #11111168 48%, #11111115 100%), var(--card-image);
+  background-size: cover;
+  background-position: center;
+  transition: background-position 0.4s;
+}
+
+.class-card:hover {
+  background-position: 55% center;
+}
+
+.class-card::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #ffffff20;
+  pointer-events: none;
+}
+
+.class-number {
+  position: absolute;
+  top: 29px;
+  left: 29px;
+  color: #d1b177;
+  font: 11px 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+}
+
+.class-card > div {
+  position: relative;
+}
+
+.class-card h3 {
+  margin: 0 0 8px;
+  font: 500 24px 'Cinzel', Georgia, serif;
+  letter-spacing: 1px;
+}
+
+.class-card p {
+  max-width: 235px;
+  color: #d2ccc1;
+  font: italic 14px/1.6 'Cormorant Garamond', Georgia, serif;
+}
+
+.card-arrow {
+  position: absolute;
+  right: -10px;
+  bottom: 3px;
+  color: #c5a36a;
+}
+
+/* ==========================================================================
+   8. Story Band & Footer
+   ========================================================================== */
+.story-band {
+  position: relative;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    linear-gradient(#10100f9c, #10100fd9),
+    url('https://artfiles.alphacoders.com/122/thumb-1920-122342.jpg') center 38% / cover;
+}
+
+.story-content {
+  position: relative;
+  padding: 60px 20px;
+}
+
+.story-band .eyebrow {
+  margin-bottom: 18px;
+}
+
+.story-band h2 {
+  margin-bottom: 29px;
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 1;
+}
+
+.story-band .gold-button {
+  gap: 13px;
+}
+
+footer {
+  min-height: 100px;
+  padding: 25px 6.2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ffffff18;
+}
+
+footer .brand {
+  transform: scale(0.8);
+  transform-origin: left center;
+}
+
+footer p,
+footer > div a {
+  color: #777268;
+  font: 8px 'Montserrat', sans-serif;
+  letter-spacing: 1.4px;
+}
+
+footer > div {
+  display: flex;
+  gap: 20px;
+}
+
+footer > div a {
+  color: #b6ad9e;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   9. Animations & Media Queries
+   ========================================================================== */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    height: 75px;
+    padding: 0 5%;
+  }
+
+  .nav {
+    gap: 20px;
+  }
+
+  .header-actions {
+    gap: 15px;
+  }
+
+  .hero-copy {
+    margin-left: 10%;
+  }
+
+  .section {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .class-card {
+    height: 330px;
+    padding: 20px;
+  }
+
+  .class-card h3 {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 680px) {
+  .topbar {
+    height: 70px;
+  }
+
+  .nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    max-height: calc(100svh - 70px);
+    padding: 14px 6% 22px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    overflow: auto;
+    background: #121210f5;
+    border-bottom: 1px solid #ffffff20;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+    border-bottom: 1px solid #ffffff16;
+  }
+
+  .nav-trigger {
+    width: 100%;
+    justify-content: space-between;
+    padding: 16px 0;
+  }
+
+  .dropdown {
+    position: static;
+    min-width: 0;
+    padding: 0 0 8px 12px;
+    display: none;
+    border: 0;
+    border-left: 1px solid #b18c55;
+    box-shadow: none;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .dropdown-open {
+    display: block;
+  }
+
+  .dropdown a {
+    padding: 10px 14px;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  .header-actions .shop-link {
+    display: none;
+  }
+
+  .outline-button {
+    padding: 11px;
+    font-size: 8px;
+  }
+
+  .menu-button {
+    display: block;
+    margin-left: 16px;
+  }
+
+  .hero {
+    min-height: 690px;
+    height: 92svh;
+    max-height: 820px;
+    background-position: 59% center;
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(90deg, #0b0b0bd9, #0b0b0b75 75%, #0b0b0b42),
+      linear-gradient(0deg, #10100f 0%, transparent 28%, #10100f54 100%);
+  }
+
+  .hero-copy {
+    margin: 20px 7% 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(58px, 15vw, 92px);
+  }
+
+  .hero-quote {
+    max-width: 290px;
+  }
+
+  .hero-caption {
+    display: none;
+  }
+
+  .scroll-cue {
+    left: 7%;
+    bottom: 34px;
+  }
+
+  .slider-controls {
+    right: 7%;
+    bottom: 24px;
+    gap: 10px;
+  }
+
+  .slider-controls button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .slide-count {
+    gap: 6px;
+  }
+
+  .slide-count span {
+    width: 16px;
+  }
+
+  .section {
+    padding: 78px 7%;
+  }
+
+  .intro-content,
+  .heroes-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 27px;
+    margin-top: 36px;
+  }
+
+  .intro-text {
+    max-width: 100%;
+  }
+
+  .intro-text p {
+    max-width: 420px;
+  }
+
+  .section h2 {
+    font-size: 48px;
+  }
+
+  .ornament {
+    top: auto;
+    right: 8%;
+    bottom: 42px;
+  }
+
+  .world-image {
+    height: 300px;
+    background-position: 54% center;
+  }
+
+  .image-note {
+    right: 7%;
+    bottom: 25px;
+    font-size: 7px;
+  }
+
+  .heroes-heading > p {
+    margin: 0;
+  }
+
+  .class-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .class-card {
+    height: 390px;
+  }
+
+  .story-band {
+    min-height: 370px;
+  }
+
+  .story-band h2 {
+    font-size: 52px;
+  }
+
+  footer {
+    padding: 25px 7%;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  footer p {
+    order: 3;
+    width: 100%;
+    margin: 0;
+  }
+
+  footer > div {
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

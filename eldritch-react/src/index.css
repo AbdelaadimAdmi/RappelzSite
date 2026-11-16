@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap');
+:root { font-family:'Montserrat',Arial,sans-serif; color:#eee8dd; background:#10100f; font-synthesis:none; text-rendering:optimizeLegibility; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; font-optical-sizing:auto; font-weight:400; scroll-behavior:smooth; }
+* { box-sizing:border-box; }
+body { margin:0; min-width:320px; min-height:100vh; }
+button,a { -webkit-tap-highlight-color:transparent; }
+::selection { background:#b18c55; color:#111; }
